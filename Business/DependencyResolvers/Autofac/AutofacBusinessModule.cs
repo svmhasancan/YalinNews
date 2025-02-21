@@ -1,8 +1,11 @@
 using Autofac;
+using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Castle.DynamicProxy;
+using Core.Utilities.Interceptors;
 
 namespace Business.DependencyResolvers.Autofac
 {
@@ -26,6 +29,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterAssemblyTypes(assembly)
                    .Where(t => t.Name.EndsWith("Manager"))
                    .AsImplementedInterfaces()
+                   .EnableInterfaceInterceptors(new ProxyGenerationOptions()
+                   {
+                       Selector = new AspectInterceptorSelector()
+                   })
                    .SingleInstance();
         }
     }

@@ -4,6 +4,8 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
+using Core.Aspects.Autofac.Validation;
+using Business.ValidationRules.FluentValidation;
 
 namespace Business.Concrete
 {
@@ -16,6 +18,7 @@ namespace Business.Concrete
             _newsDal = newsDal;
         }
 
+        [ValidationAspect(typeof(NewsValidator))]
         public IResult Add(News news)
         {
             _newsDal.Add(news);

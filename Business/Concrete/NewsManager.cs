@@ -57,6 +57,7 @@ namespace Business.Concrete
             return new SuccessDataResult<News>(news);
         }
 
+        [ValidationAspect(typeof(NewsValidator))]
         public IResult Update(News news)
         {
             _newsDal.Update(news);

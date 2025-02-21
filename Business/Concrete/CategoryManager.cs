@@ -1,4 +1,5 @@
 using Business.Abstract;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -15,10 +16,11 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
+        [ValidationAspect(typeof(CategoryValidator))]
         public IResult Add(Category category)
         {
             _categoryDal.Add(category);
-            return new SuccessResult("Kategori başarıyla eklendi");
+            return new SuccessResult(Messages.CategoryAdded);
         }
 
         public IResult Delete(Category category)
@@ -37,10 +39,11 @@ namespace Business.Concrete
             return new SuccessDataResult<Category>(_categoryDal.Get(c => c.Id == categoryId));
         }
 
+        [ValidationAspect(typeof(CategoryValidator))]
         public IResult Update(Category category)
         {
             _categoryDal.Update(category);
-            return new SuccessResult("Kategori başarıyla güncellendi");
+            return new SuccessResult(Messages.CategoryUpdated);
         }
     }
 } 

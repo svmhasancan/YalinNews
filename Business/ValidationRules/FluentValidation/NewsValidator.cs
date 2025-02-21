@@ -10,7 +10,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(n => n.Title)
                 .NotEmpty().WithMessage("Haber başlığı boş olamaz")
                 .MinimumLength(3).WithMessage("Başlık en az 3 karakter olmalıdır")
-                .MaximumLength(200).WithMessage("Başlık en fazla 200 karakter olabilir");
+                .MaximumLength(300).WithMessage("Başlık en fazla 300 karakter olabilir");
 
             RuleFor(n => n.Content)
                 .NotEmpty().WithMessage("Haber içeriği boş olamaz")

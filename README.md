@@ -36,7 +36,7 @@ Bu proje, haber portalı için geliştirilmiş bir .NET Core Web API projesidir.
 
 1. Projeyi klonlayın
 bash
-git clone https://github.com/yourusername/NewsPortalAPI.git
+git clone https://github.com/svmhasancan/YalinNews.git
 
 2. Veritabanını oluşturun
 bash
@@ -77,12 +77,13 @@ dotnet run
 - Secure token yapısı
 
 ## 📚 Kullanılan NuGet Paketleri ve Sürümleri
-<PackageReference Include="Autofac" Version="7.1.0" />
-<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-<PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
-<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
-<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
-<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0" />
+
+- Autofac 7.1.0
+- Autofac.Extensions.DependencyInjection 8.0.0
+- Autofac.Extras.DynamicProxy 7.1.0
+- Microsoft.AspNetCore.Authentication.JwtBearer 8.0.0
+- Microsoft.EntityFrameworkCore.SqlServer 8.0.0
+- Microsoft.EntityFrameworkCore.Tools 8.0.0
 
 ## 🤝 Katkıda Bulunma
 

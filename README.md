@@ -1,4 +1,4 @@
-# News Portal Backend API
+# Yalin News Backend API
 
 Bu proje, haber portalı için geliştirilmiş bir .NET Core Web API projesidir. SOLID prensiplerine uygun, kurumsal mimari yapısında geliştirilmiştir.
 

@@ -31,5 +31,25 @@ namespace Business.Constants
         public static string DataNotFound = "Veri bulunamadı";
         public static string OperationSuccessful = "İşlem başarılı";
         public static string OperationFailed = "İşlem başarısız";
+
+        // Auth Messages
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string PasswordError = "Şifre hatalı";
+        public static string SuccessfulLogin = "Giriş başarılı";
+        public static string UserAlreadyExists = "Kullanıcı zaten mevcut";
+        public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
+        public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
+
+        // New messages
+        public static string UserAdded = "Kullanıcı eklendi";
+        public static string UserDeleted = "Kullanıcı silindi";
+        public static string UserUpdated = "Kullanıcı güncellendi";
+        public static string UsersListed = "Kullanıcılar listelendi";
+
+        // New message
+        public static string AuthorizationDenied = "Yetkiniz yok";
+
+        // New message
+        public static string Error = "Bir hata oluştu";
     }
 } 

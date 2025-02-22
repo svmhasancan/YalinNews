@@ -6,6 +6,7 @@ using Entities.Concrete;
 using System.Collections.Generic;
 using Core.Aspects.Autofac.Validation;
 using Business.ValidationRules.FluentValidation;
+using Business.BusinessAspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -18,6 +19,7 @@ namespace Business.Concrete
             _newsDal = newsDal;
         }
 
+        [SecuredOperation("admin,editor")]
         [ValidationAspect(typeof(NewsValidator))]
         public IResult Add(News news)
         {
@@ -25,6 +27,14 @@ namespace Business.Concrete
             return new SuccessResult(Messages.NewsAdded);
         }
 
+        [SecuredOperation("admin,editor")]
+        public IResult Update(News news)
+        {
+            _newsDal.Update(news);
+            return new SuccessResult(Messages.NewsUpdated);
+        }
+
+        [SecuredOperation("admin")]
         public IResult Delete(News news)
         {
             _newsDal.Delete(news);
@@ -55,13 +65,6 @@ namespace Business.Concrete
                 return new ErrorDataResult<News>(Messages.NewsNotFound);
                 
             return new SuccessDataResult<News>(news);
-        }
-
-        [ValidationAspect(typeof(NewsValidator))]
-        public IResult Update(News news)
-        {
-            _newsDal.Update(news);
-            return new SuccessResult(Messages.NewsUpdated);
         }
     }
 } 

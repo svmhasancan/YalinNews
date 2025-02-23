@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using Core.Aspects.Autofac.Validation;
 using Business.ValidationRules.FluentValidation;
 using Business.BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+
 
 namespace Business.Concrete
 {
@@ -21,6 +23,7 @@ namespace Business.Concrete
 
         [SecuredOperation("admin,editor")]
         [ValidationAspect(typeof(NewsValidator))]
+        [CacheRemoveAspect("INewsService.Get")]
         public IResult Add(News news)
         {
             _newsDal.Add(news);
@@ -41,9 +44,11 @@ namespace Business.Concrete
             return new SuccessResult(Messages.NewsDeleted);
         }
 
+        [CacheAspect(duration: 10)]
         public IDataResult<List<News>> GetAll()
         {
-            return new SuccessDataResult<List<News>>(_newsDal.GetAll(), Messages.NewsListed);
+            var result = _newsDal.GetAll();
+            return new SuccessDataResult<List<News>>(result,Messages.NewsListed);
         }
 
         public IDataResult<List<News>> GetAllByAuthorId(int authorId)

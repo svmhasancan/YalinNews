@@ -24,7 +24,7 @@ namespace Business.Concrete
 
         [SecuredOperation("admin,editor")]
         [ValidationAspect(typeof(NewsValidator))]
-        [CacheRemoveAspect("INewsService.Get")]
+        //[CacheRemoveAspect("INewsService.Get")]
         public IResult Add(News news)
         {
             _newsDal.Add(news);
@@ -38,7 +38,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.NewsUpdated);
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IResult Delete(News news)
         {
             _newsDal.Delete(news);

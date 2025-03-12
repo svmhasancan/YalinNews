@@ -24,7 +24,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  ImageUrl = n.ImageUrl,
                                  PublishDate = n.PublishDate,
                                  CategoryName = c.Name,
-                                 AuthorName = a.FirstName + "" + a.LastName,
+                                 AuthorName = a.FirstName + " " + a.LastName,
                                  IsActive = n.IsActive
                              };
                 return result.ToList();

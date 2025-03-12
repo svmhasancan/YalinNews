@@ -8,6 +8,7 @@ using Core.Aspects.Autofac.Validation;
 using Business.ValidationRules.FluentValidation;
 using Business.BusinessAspects.Autofac;
 using Core.Aspects.Autofac.Caching;
+using Entities.DTOs;
 
 
 namespace Business.Concrete
@@ -70,6 +71,12 @@ namespace Business.Concrete
                 return new ErrorDataResult<News>(Messages.NewsNotFound);
                 
             return new SuccessDataResult<News>(news);
+        }
+
+        public IDataResult<List<NewsDetailDto>> GetNewsDetails()
+        {
+            var result = _newsDal.GetNewsDetail();
+            return new SuccessDataResult<List<NewsDetailDto>>(result);
         }
     }
 } 

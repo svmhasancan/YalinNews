@@ -59,6 +59,18 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getnewsbydetails")]
+        public IActionResult GetNewsByDetails()
+        {
+            var result = _newsService.GetNewsDetails();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(News news)
         {

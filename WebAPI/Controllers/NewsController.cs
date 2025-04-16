@@ -37,10 +37,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbycategory")]
-        public IActionResult GetByCategory(int categoryId)
+        [HttpGet("getbycategoryid")]
+        public IActionResult GetByCategoryId(int id)
         {
-            var result = _newsService.GetAllByCategoryId(categoryId);
+            var result = _newsService.GetAllByCategoryId(id);
             if (result.Success)
             {
                 return Ok(result);

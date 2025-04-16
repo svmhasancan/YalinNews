@@ -16,10 +16,12 @@ namespace Business.Concrete
     public class NewsManager : INewsService
     {
         private INewsDal _newsDal;
+        private ICategoryService _categoryService;
 
-        public NewsManager(INewsDal newsDal)
+        public NewsManager(INewsDal newsDal,ICategoryService categoryService)
         {
             _newsDal = newsDal;
+            _categoryService = categoryService;
         }
 
         [SecuredOperation("admin,editor")]
@@ -58,10 +60,17 @@ namespace Business.Concrete
             return new SuccessDataResult<List<News>>(result, Messages.NewsListed);
         }
 
-        public IDataResult<List<News>> GetAllByCategoryId(int categoryId)
+        public IDataResult<List<NewsDetailDto>> GetAllByCategoryId(int categoryId)
         {
-            var result = _newsDal.GetAll(n => n.CategoryId == categoryId);
-            return new SuccessDataResult<List<News>>(result, Messages.NewsListed);
+            var result = _newsDal.GetNewsDetailByCategoryId(categoryId);
+            return new SuccessDataResult<List<NewsDetailDto>>(result, Messages.NewsListed);
+        }
+
+        public IDataResult<int> GetCategoryIdByName(string categoryName)
+        {
+            var categoryId = _categoryService.GetByName(categoryName).Data.Id;
+
+            return new SuccessDataResult<int>(categoryId);
         }
 
         public IDataResult<News> GetById(int newsId)

@@ -10,8 +10,9 @@ namespace Business.Abstract
         IDataResult<List<News>> GetAll();
         IDataResult<News> GetById(int newsId);
         IDataResult<List<NewsDetailDto>> GetNewsDetails();
-        IDataResult<List<News>> GetAllByCategoryId(int categoryId);
+        IDataResult<List<NewsDetailDto>> GetAllByCategoryId(int categoryId);
         IDataResult<List<News>> GetAllByAuthorId(int authorId);
+        IDataResult<int> GetCategoryIdByName(string categoryName);
         IResult Add(News news);
         IResult Update(News news);
         IResult Delete(News news);

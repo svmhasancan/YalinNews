@@ -41,6 +41,12 @@ namespace Business.Concrete
             return new SuccessDataResult<Category>(_categoryDal.Get(c => c.Id == categoryId));
         }
 
+        public IDataResult<Category> GetByName(string categoryName)
+        {
+            var result = _categoryDal.Get(c => c.Name == categoryName);
+            return new SuccessDataResult<Category>(result);
+        }
+
         [ValidationAspect(typeof(CategoryValidator))]
         public IResult Update(Category category)
         {

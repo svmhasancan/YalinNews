@@ -1,5 +1,6 @@
 using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -38,6 +39,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
+        [AllowAnonymous]
         public IActionResult Add(Category category)
         {
             var result = _categoryService.Add(category);

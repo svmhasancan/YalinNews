@@ -65,11 +65,17 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+//app.UseCors(builder =>
+//    builder.WithOrigins("http://localhost:4200/")
+//    .AllowAnyHeader()
+//    .AllowAnyMethod()
+//    .AllowAnyOrigin()
+//);
+
 app.UseCors(builder =>
-    builder.WithOrigins("http://localhost:4200/")
-    .AllowAnyHeader()
-    .AllowAnyMethod()
-    .AllowAnyOrigin()
+    builder.AllowAnyOrigin()
+           .AllowAnyHeader()
+           .AllowAnyMethod()
 );
 
 app.UseHttpsRedirection();

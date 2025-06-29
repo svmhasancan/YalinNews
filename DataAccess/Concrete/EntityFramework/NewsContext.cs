@@ -14,11 +14,24 @@ namespace DataAccess.Concrete.EntityFramework
             _configuration = configuration;
         }
 
+        public NewsContext()
+        {
+            
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connectionString = _configuration.GetConnectionString("DefaultConnection");
+                // Railway veya diðer ortamlarda Environment üzerinden connection string alýnabilir:
+                var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+
+                // Fallback ekle (örneðin local için)
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=YalinNews;Trusted_Connection=true";
+                }
+
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }

@@ -100,6 +100,8 @@ using Microsoft.AspNetCore.Http;
 using Core.Utilities.IoC;
 using Core.DependencyResolvers;
 using Core.Extensions;
+using DataAccess.Concrete.EntityFramework;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -115,6 +117,12 @@ builder.Services.AddHttpContextAccessor();
 // Swagger/OpenAPI configuration
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<NewsContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 
 // CORS yapılandırması
 builder.Services.AddCors(options =>

@@ -73,10 +73,11 @@ app.UseSwaggerUI();
 //);
 
 app.UseCors(builder =>
-    builder.AllowAnyOrigin()
+    builder.WithOrigins("https://yalinnews-frontend.vercel.app")
            .AllowAnyHeader()
            .AllowAnyMethod()
 );
+
 
 app.UseHttpsRedirection();
 

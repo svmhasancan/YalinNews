@@ -8,6 +8,7 @@ namespace DataAccess.Concrete.EntityFramework
     public class NewsContext : DbContext
     {
         public NewsContext(DbContextOptions<NewsContext> options) : base(options) { }
+        public NewsContext() : base() { }
 
         public DbSet<News> News { get; set; }
         public DbSet<Category> Categories { get; set; }

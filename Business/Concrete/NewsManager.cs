@@ -24,7 +24,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
-        [SecuredOperation("admin,editor")]
+        //[SecuredOperation("admin,editor")]
         [ValidationAspect(typeof(NewsValidator))]
         //[CacheRemoveAspect("INewsService.Get")]
         public IResult Add(News news)

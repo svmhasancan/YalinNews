@@ -8,7 +8,12 @@ namespace DataAccess.Concrete.EntityFramework
     public class NewsContext : DbContext
     {
         public NewsContext(DbContextOptions<NewsContext> options) : base(options) { }
-        public NewsContext() : base() { }
+        public NewsContext() : base(
+            new DbContextOptionsBuilder<NewsContext>()
+                .UseNpgsql("Host=mainline.proxy.rlwy.net;Port=11680;Database=railway;Username=postgres;Password=fLKVdMzFgWUPPaetiSrWwLSVcOnlySEA")
+                .Options)
+        {
+        }
 
         public DbSet<News> News { get; set; }
         public DbSet<Category> Categories { get; set; }

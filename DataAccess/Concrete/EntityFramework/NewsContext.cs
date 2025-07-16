@@ -7,39 +7,9 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class NewsContext : DbContext
     {
-        private readonly IConfiguration _configuration;
+        public NewsContext(DbContextOptions<NewsContext> options) : base(options) { }
 
-        public NewsContext(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
-        public NewsContext()
-        {
-            
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                // Railway veya diðer ortamlarda Environment üzerinden connection string alýnabilir:
-                var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
-
-                // Fallback ekle (örneðin local için)
-                if (string.IsNullOrEmpty(connectionString))
-                {
-                    connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=YalinNews;Trusted_Connection=true";
-                }
-
-                optionsBuilder.UseSqlServer(connectionString);
-            }
-        }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=YalinNews;Trusted_Connection=true");
-        //}
+        public NewsContext() : base() { }
 
         public DbSet<News> News { get; set; }
         public DbSet<Category> Categories { get; set; }

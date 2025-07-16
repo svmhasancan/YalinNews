@@ -102,6 +102,7 @@ using Core.DependencyResolvers;
 using Core.Extensions;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
+using Autofac.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -118,10 +119,14 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//builder.Services.AddDbContext<NewsContext>(options =>
+//{
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+//});
+
 builder.Services.AddDbContext<NewsContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    b => b.MigrationsAssembly("WebAPI")));
 
 
 // CORS yapılandırması
